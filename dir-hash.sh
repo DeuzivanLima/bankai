@@ -26,10 +26,11 @@ done
 echo -e "$RUNNING File list strlen: ${#FILES}"
 
 echo -e "$RUNNING Cauculate hashes..."
+
 for file in $FILES; do
         cauculate_hash $file
-        echo -ne "\033[K$RUNNING file: $file$RESET\r"
+        echo -ne "$RUNNING file: $file\n"
 done
 echo -e "$RUNNING Hashes list strlen: ${#HASHES}"
 
-echo -e "\n\nYour Final Hash: $GREEN$(echo $HASHES | sha256sum | cut -f1 -d' ')$RESET"
+echo -e "\n\nYour Final Hash: $GREEN$(echo $HASHES | tr ' ' '\n' | sort | sha256sum | cut -f1 -d' ')$RESET"
